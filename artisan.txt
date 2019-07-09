@@ -1,0 +1,7 @@
+php artisan serve // pokretanje servera
+php artisan migrate //stvaranje tablica
+php artisan -h make:migration // pomoć
+php artisan make:migration // stvori novu migraciju
+php artisan make:migration create_posts_table
+php artisan make:model Post // stvaranje novog modela
+$ php artisan make:controller PostController // stvori controller
