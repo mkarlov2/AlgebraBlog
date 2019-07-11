@@ -3,9 +3,6 @@
 @section('content')
 
 
- jedan korisnik
+ svi korisnici
 
  @endsection
-
-
-
