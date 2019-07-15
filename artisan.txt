@@ -6,3 +6,4 @@ php artisan make:migration create_posts_table
 php artisan make:model Post // stvaranje novog modela
 $ php artisan make:controller PostController // stvori controller
 php artisan make:auth
+ php artisan make:controller UserController -r // stvori controller
