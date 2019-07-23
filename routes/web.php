@@ -12,33 +12,51 @@
 */
 
 Route::get('/', function () {
-   
+    return view('welcome');
 });
 
 /***************** POSTS *******************/
 Route::get('/posts', 'PostController@index')->name('posts.index');
 
-Route::get('/posts/{id}', 'PostController@show')->name('posts.show');
+Route::get('/posts/create', 'PostController@create')->name('posts.create');
 
-/***************** USERS  - prikaži sve usere*******************/
-Route::get('/users', 'UserController@index')->name('users.index') ;
+Route::get('/posts/{post}', 'PostController@show')->name('posts.show');
 
-/********************prikaži formu za kreiranje usera - MORA BITI IZNAD OVIH SA WILDCARDOM {} DA NE BLOKIRA SISTEM******/
+Route::post('/posts', 'PostController@store')->name('posts.store');
+
+Route::get('/posts/{post}/edit', 'PostController@edit')->name('posts.edit');
+
+Route::patch('/posts/{post}','PostController@update')->name('posts.update');
+
+Route::delete('/posts/{post}', 'PostController@destroy')->name('posts.destroy')->middleware('verified');
+
+
+/***************** USERS *******************/
+// prikaži sve usere
+Route::get('/users', 'UserController@index')->name('users.index');
+
+// prikaži formu za kreiranje usera
 Route::get('/users/create', 'UserController@create')->name('users.create');
 
-/*******************prikaži pojedinog usera***********************/
+// spremi usera u bazu
+Route::post('/users', 'UserController@store')->name('users.store');
+
+// prikaži pojedinog usera
 Route::get('/users/{user}', 'UserController@show')->name('users.show');
 
-/********************obriši usera*********************************** */
-Route::delete('/users/{user}', 'UserController@destroy')->name('users.destroy');
-
-/********************prikaži formu za uređivanje useraa****************** */
+// prikaži formu za uređivanje usera
 Route::get('/users/{user}/edit', 'UserController@edit')->name('users.edit');
 
+// obriši usera
+Route::delete('/users/{user}', 'UserController@destroy')->name('users.destroy');
+
+// ažuriraj korisnika
+Route::patch('/users/{user}','UserController@update')->name('users.update');
+
+/***************** COMMENTS *******************/
+Route::post('/posts/{post}/comments', 'CommentController@store');
 
 
-/********************spremi usera u bazu************************************ */
-Route::post('/users','UserController@store')->name('users.store');
-Auth::routes();
+Auth::routes(['verify'=> true]);
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -19,7 +19,7 @@ class CreatePostsTable extends Migration
             $table->text('body');
             $table->string('slug')->unique();
             $table->integer('views')->default(0);
-            $table->integer('user_id')->default(0);
+            $table->integer('user_id');
             $table->timestamps();
         });
     }
